@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Code, Database, Tool, Award } from 'lucide-react';
+import { Code, Database, Wrench, Award } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
@@ -16,7 +16,7 @@ const Skills = () => {
     },
     {
       title: "Tools & Platforms",
-      icon: Tool,
+      icon: Wrench,
       skills: ["PyCharm", "VS Code", "Jupyter Notebook", "Power BI", "Git", "NetBeans IDE", "Ganache"]
     },
     {
