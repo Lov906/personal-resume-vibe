@@ -30,34 +30,34 @@ const Education = () => {
   return (
     <section id="education" className="py-20 bg-slate-800/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl font-bold text-white mb-4">Education</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
         </div>
         
         <div className="grid gap-8">
           {education.map((edu, index) => (
-            <div key={index} className="bg-slate-800/50 p-6 rounded-lg border border-purple-500/20">
+            <div key={index} className={`bg-slate-800/50 p-6 rounded-lg border border-purple-500/20 hover:border-purple-400/60 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer animate-fade-in animation-delay-${(index + 1) * 200}`}>
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">{edu.degree}</h3>
-                  <h4 className="text-lg font-semibold text-purple-300 mb-2">{edu.institution}</h4>
-                  <p className="text-gray-400">{edu.location}</p>
+                  <h3 className="text-xl font-bold text-white mb-2 hover:text-purple-300 transition-colors duration-300">{edu.degree}</h3>
+                  <h4 className="text-lg font-semibold text-purple-300 mb-2 hover:text-purple-200 transition-colors duration-300">{edu.institution}</h4>
+                  <p className="text-gray-400 hover:text-gray-300 transition-colors duration-300">{edu.location}</p>
                 </div>
                 <div className="mt-4 md:mt-0 text-right">
                   <div className="flex items-center justify-end mb-2">
-                    <Calendar className="w-5 h-5 text-purple-400 mr-2" />
+                    <Calendar className="w-5 h-5 text-purple-400 mr-2 hover:scale-110 transition-transform duration-300" />
                     <span className="text-purple-300 font-medium">{edu.duration}</span>
                   </div>
                   {edu.cgpa && (
                     <div className="flex items-center justify-end">
-                      <GraduationCap className="w-5 h-5 text-purple-400 mr-2" />
+                      <GraduationCap className="w-5 h-5 text-purple-400 mr-2 hover:scale-110 transition-transform duration-300" />
                       <span className="text-white font-semibold">CGPA: {edu.cgpa}</span>
                     </div>
                   )}
                   {edu.percentage && (
                     <div className="flex items-center justify-end">
-                      <GraduationCap className="w-5 h-5 text-purple-400 mr-2" />
+                      <GraduationCap className="w-5 h-5 text-purple-400 mr-2 hover:scale-110 transition-transform duration-300" />
                       <span className="text-white font-semibold">Percentage: {edu.percentage}</span>
                     </div>
                   )}
