@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 
 const ParticleBackground = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -14,14 +14,7 @@ const ParticleBackground = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const particles: Array<{
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      opacity: number;
-    }> = [];
+    const particles = [];
 
     // Create particles
     for (let i = 0; i < 100; i++) {

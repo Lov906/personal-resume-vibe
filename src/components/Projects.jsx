@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ExternalLink, Github, Sparkles, Zap } from 'lucide-react';
 

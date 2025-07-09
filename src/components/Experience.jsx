@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Calendar, MapPin, Briefcase, Zap } from 'lucide-react';
 
