@@ -1,92 +1,159 @@
 
-import React from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Github, Sparkles, Zap } from 'lucide-react';
 
 const Projects = () => {
+  const [activeFilter, setActiveFilter] = useState('all');
+
   const projects = [
     {
-      title: "AI-Based Genuine Hospital Recommendation Using Blockchain",
-      description: "Developed a secure platform for predicting hospital and treatment costs using AI, integrated with blockchain for fundraising and data integrity.",
-      technologies: ["AI", "Blockchain", "Python", "Machine Learning"],
+      title: "AI Hospital Recommendation System",
+      description: "Revolutionary blockchain-integrated platform using AI to predict hospital costs and enable secure fundraising for medical treatments.",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop&crop=center",
+      technologies: ["AI", "Blockchain", "Python", "Machine Learning", "Smart Contracts"],
+      category: "ai",
       github: "#",
       demo: "#",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop&crop=center"
+      gradient: "from-[#8b5cf6] to-[#a855f7]"
     },
     {
-      title: "Weather Analysis & Aeroplane Game",
-      description: "Built a weather data processing tool with a UI and designed a 2D obstacle-avoidance game.",
-      technologies: ["Python", "UI Design", "Game Development", "Data Processing"],
+      title: "Weather Analysis Gaming Suite",
+      description: "Intelligent weather data processing tool with interactive UI plus an engaging 2D obstacle-avoidance game with physics engine.",
+      image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=500&h=300&fit=crop&crop=center",
+      technologies: ["Python", "Game Development", "Data Visualization", "Physics Engine"],
+      category: "game",
       github: "#",
       demo: "#",
-      image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=500&h=300&fit=crop&crop=center"
+      gradient: "from-[#a855f7] to-[#c084fc]"
+    },
+    {
+      title: "3D Spatial Data Processor",
+      description: "Advanced geometric computation engine for processing complex 3D spatial datasets with real-time visualization capabilities.",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=500&h=300&fit=crop&crop=center",
+      technologies: ["Python", "3D Graphics", "Spatial Analysis", "Real-time Processing"],
+      category: "data",
+      github: "#",
+      demo: "#",
+      gradient: "from-[#c084fc] to-[#e879f9]"
     }
   ];
 
+  const filters = [
+    { key: 'all', label: 'All Projects' },
+    { key: 'ai', label: 'AI & ML' },
+    { key: 'game', label: 'Games' },
+    { key: 'data', label: 'Data Science' }
+  ];
+
+  const filteredProjects = activeFilter === 'all' 
+    ? projects 
+    : projects.filter(project => project.category === activeFilter);
+
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-20 relative z-10 bg-gradient-to-b from-transparent to-[#1a0d2e]/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-bold text-white mb-4">Relevant Projects</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+        {/* Section Header */}
+        <div className="text-center mb-16 slide-in-up">
+          <h2 className="text-5xl font-black mb-4 bg-gradient-to-r from-[#8b5cf6] to-[#e879f9] bg-clip-text text-transparent neon-text">
+            Featured Projects
+          </h2>
+          <div className="w-32 h-1 bg-gradient-to-r from-[#8b5cf6] to-[#e879f9] mx-auto rounded-full mb-8"></div>
+          <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+            Showcasing innovative solutions that blend cutting-edge technology with creative problem-solving
+          </p>
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {filters.map((filter) => (
+            <button
+              key={filter.key}
+              onClick={() => setActiveFilter(filter.key)}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform-gpu hover:scale-105 ${
+                activeFilter === filter.key
+                  ? 'bg-gradient-to-r from-[#8b5cf6] to-[#a855f7] text-white neon-glow'
+                  : 'bg-[#1a0d2e]/50 text-[#8b5cf6] border border-[#8b5cf6]/30 hover:bg-[#8b5cf6]/10 hover:border-[#8b5cf6]/60'
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <div 
-              key={index} 
-              className={`group bg-slate-800/50 rounded-lg border border-purple-500/20 hover:border-purple-400/60 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-500 cursor-pointer animate-fade-in overflow-hidden`}
-              style={{ animationDelay: `${(index + 1) * 200}ms` }}
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
+            <div
+              key={index}
+              className="group relative bg-gradient-to-br from-[#1a0d2e]/80 to-[#2d1b4e]/80 rounded-xl overflow-hidden border border-[#8b5cf6]/30 backdrop-blur-sm transform-gpu hover:scale-105 transition-all duration-500 card-3d neon-border hover:neon-glow"
+              style={{ animationDelay: `${index * 200}ms` }}
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a0d2e]/80 via-transparent to-transparent"></div>
+                <div className="absolute top-4 right-4">
+                  <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${project.gradient} animate-pulse`}></div>
+                </div>
+                
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#8b5cf6]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              
-              {/* Project Content */}
+
+              {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 hover:text-purple-300 transition-colors duration-300">
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#e879f9] transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p className="text-gray-300 mb-4 leading-relaxed hover:text-white transition-colors duration-300">
+                <p className="text-gray-300 mb-4 leading-relaxed group-hover:text-white transition-colors duration-300">
                   {project.description}
                 </p>
-                
+
+                {/* Technologies */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium hover:bg-purple-500/30 hover:scale-105 transition-all duration-300 cursor-pointer"
+                      className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-[#8b5cf6]/20 to-[#c084fc]/20 text-[#c084fc] rounded-full border border-[#8b5cf6]/30 hover:scale-105 transition-transform duration-200 cursor-default"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-                
+
+                {/* Action Buttons */}
                 <div className="flex space-x-4">
                   <a
                     href={project.github}
-                    className="flex items-center text-gray-300 hover:text-purple-400 transition-all duration-300 hover:scale-110"
+                    className="flex items-center text-gray-300 hover:text-[#e879f9] transition-all duration-300 hover:scale-110 transform-gpu"
                   >
                     <Github className="w-5 h-5 mr-2" />
                     Code
                   </a>
                   <a
                     href={project.demo}
-                    className="flex items-center text-gray-300 hover:text-purple-400 transition-all duration-300 hover:scale-110"
+                    className="flex items-center text-gray-300 hover:text-[#e879f9] transition-all duration-300 hover:scale-110 transform-gpu"
                   >
                     <ExternalLink className="w-5 h-5 mr-2" />
-                    Live Demo
+                    Demo
                   </a>
                 </div>
               </div>
+
+              {/* Floating Elements */}
+              <div className="absolute -top-2 -left-2 w-4 h-4 bg-[#8b5cf6] rounded-full opacity-0 group-hover:opacity-100 animate-float transition-opacity duration-300"></div>
+              <Zap className="absolute bottom-4 right-4 w-5 h-5 text-[#c084fc] opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
             </div>
           ))}
         </div>
+
+        {/* Floating Decorations */}
+        <Sparkles className="absolute top-20 right-20 w-6 h-6 text-[#8b5cf6] animate-pulse opacity-40" />
+        <div className="absolute bottom-10 left-1/4 w-5 h-5 bg-[#e879f9] rounded-full animate-float-slow opacity-30"></div>
       </div>
     </section>
   );

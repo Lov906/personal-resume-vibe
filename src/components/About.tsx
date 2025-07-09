@@ -1,61 +1,115 @@
 
 import React from 'react';
-import { Code, Database, Cpu } from 'lucide-react';
+import { Code, Database, Cpu, Sparkles } from 'lucide-react';
 
 const About = () => {
   return (
-    <section id="about" className="py-20">
+    <section id="about" className="py-20 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto"></div>
+        {/* Section Header */}
+        <div className="text-center mb-16 slide-in-up">
+          <h2 className="text-5xl font-black mb-4 bg-gradient-to-r from-[#8b5cf6] to-[#e879f9] bg-clip-text text-transparent neon-text">
+            About Me
+          </h2>
+          <div className="w-32 h-1 bg-gradient-to-r from-[#8b5cf6] to-[#e879f9] mx-auto rounded-full"></div>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in animation-delay-200">
-            <h3 className="text-2xl font-semibold text-white mb-6">Career Summary</h3>
-            <p className="text-gray-300 text-lg leading-relaxed mb-6">
-              Detail-oriented Software Developer skilled in designing efficient algorithms, 
-              data transformations, and scalable solutions. Proficient in multiple programming 
-              languages and tools, committed to driving organizational success as a collaborative 
-              team player.
-            </p>
-            <p className="text-gray-300 text-lg leading-relaxed">
-              Currently working as a Software Developer Trainee at Q-gate Infotech Private Limited, 
-              where I focus on advanced data transformations, spatial computations, and 3D spatial 
-              data analysis to enhance performance and precision in processing complex datasets.
-            </p>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Side - Text Content */}
+          <div className="slide-in-left">
+            <div className="relative">
+              <h3 className="text-3xl font-bold text-white mb-6 neon-text">
+                Crafting Digital Excellence
+              </h3>
+              <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
+                <p>
+                  I'm a passionate Software Developer specializing in cutting-edge technologies 
+                  and innovative solutions. With expertise in 3D spatial data analysis and 
+                  advanced algorithms, I transform complex challenges into elegant digital experiences.
+                </p>
+                <p>
+                  Currently pushing boundaries at Q-gate Infotech, where I design optimized 
+                  algorithms for spatial computations and geometric data processing, ensuring 
+                  scalability and precision in every project.
+                </p>
+              </div>
+              
+              {/* Animated Stats */}
+              <div className="grid grid-cols-3 gap-6 mt-8">
+                {[
+                  { number: '2+', label: 'Years Experience' },
+                  { number: '10+', label: 'Projects Completed' },
+                  { number: '5+', label: 'Technologies Mastered' }
+                ].map((stat, index) => (
+                  <div key={index} className="text-center group">
+                    <div className="text-3xl font-black bg-gradient-to-r from-[#8b5cf6] to-[#e879f9] bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                      {stat.number}
+                    </div>
+                    <div className="text-sm text-gray-400 group-hover:text-[#8b5cf6] transition-colors duration-300">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
           
-          <div className="grid gap-6 animate-fade-in animation-delay-400">
-            <div className="bg-slate-800/50 p-6 rounded-lg border border-purple-500/20 hover:border-purple-400/60 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer">
-              <Code className="w-12 h-12 text-purple-400 mb-4 hover:scale-110 transition-transform duration-300" />
-              <h4 className="text-xl font-semibold text-white mb-2">Software Development</h4>
-              <p className="text-gray-300">
-                Proficient in Python, C, C++, Java, and SQL with expertise in designing 
-                efficient algorithms and scalable solutions.
-              </p>
-            </div>
-            
-            <div className="bg-slate-800/50 p-6 rounded-lg border border-purple-500/20 hover:border-purple-400/60 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer">
-              <Database className="w-12 h-12 text-purple-400 mb-4 hover:scale-110 transition-transform duration-300" />
-              <h4 className="text-xl font-semibold text-white mb-2">Data Analysis</h4>
-              <p className="text-gray-300">
-                Experienced in exploratory data analysis (EDA), machine learning, 
-                and spatial data processing using Python and SQL.
-              </p>
-            </div>
-            
-            <div className="bg-slate-800/50 p-6 rounded-lg border border-purple-500/20 hover:border-purple-400/60 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer">
-              <Cpu className="w-12 h-12 text-purple-400 mb-4 hover:scale-110 transition-transform duration-300" />
-              <h4 className="text-xl font-semibold text-white mb-2">Technical Expertise</h4>
-              <p className="text-gray-300">
-                Specialized in 3D spatial data analysis, geometric computations, 
-                and blockchain integration for secure platform development.
-              </p>
+          {/* Right Side - 3D Cards */}
+          <div className="slide-in-right">
+            <div className="grid gap-6">
+              {[
+                {
+                  icon: Code,
+                  title: 'Software Development',
+                  description: 'Expert in Python, Java, C++, and modern frameworks with a focus on scalable solutions.',
+                  color: 'from-[#8b5cf6] to-[#a855f7]'
+                },
+                {
+                  icon: Database,
+                  title: 'Data Analysis',
+                  description: 'Advanced EDA, machine learning, and spatial data processing expertise.',
+                  color: 'from-[#a855f7] to-[#c084fc]'
+                },
+                {
+                  icon: Cpu,
+                  title: '3D Spatial Computing',
+                  description: 'Specialized in geometric computations and 3D data visualization.',
+                  color: 'from-[#c084fc] to-[#e879f9]'
+                }
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="group relative bg-gradient-to-br from-[#1a0d2e]/80 to-[#2d1b4e]/80 p-6 rounded-xl border border-[#8b5cf6]/30 backdrop-blur-sm transform-gpu hover:scale-105 transition-all duration-500 card-3d neon-border hover:neon-glow cursor-pointer"
+                >
+                  <div className="flex items-start space-x-4">
+                    <div className={`p-3 rounded-lg bg-gradient-to-r ${item.color} group-hover:scale-110 transform-gpu transition-transform duration-300`}>
+                      <item.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-white mb-2 group-hover:text-[#e879f9] transition-colors duration-300">
+                        {item.title}
+                      </h4>
+                      <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Floating decoration */}
+                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-gradient-to-r from-[#8b5cf6] to-[#e879f9] rounded-full opacity-0 group-hover:opacity-100 animate-float transition-opacity duration-300"></div>
+                  
+                  {/* Hover effect overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#8b5cf6]/10 to-[#e879f9]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-10 right-10 w-6 h-6 bg-[#8b5cf6] rounded-full animate-float opacity-40"></div>
+        <div className="absolute bottom-20 left-10 w-4 h-4 bg-[#e879f9] rounded-full animate-float-slow opacity-60"></div>
+        <Sparkles className="absolute top-1/2 left-1/4 w-8 h-8 text-[#c084fc] animate-pulse opacity-30" />
       </div>
     </section>
   );

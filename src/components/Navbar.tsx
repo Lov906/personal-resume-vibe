@@ -1,56 +1,65 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Education', href: '#education' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
   ];
 
-  const handleNavClick = (href: string) => {
-    setIsOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <nav className="fixed top-0 w-full bg-slate-900/90 backdrop-blur-sm z-50 border-b border-purple-500/20">
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      scrolled 
+        ? 'bg-[#1a0d2e]/90 backdrop-blur-md border-b border-[#8b5cf6]/20' 
+        : 'bg-transparent'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
+          {/* Logo */}
           <div className="flex-shrink-0">
-            <span className="text-2xl font-bold text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-purple-400 hover:to-pink-400 transition-all duration-300 cursor-pointer">
-              Pavithra M V
+            <span className="text-2xl font-black bg-gradient-to-r from-[#8b5cf6] to-[#e879f9] bg-clip-text text-transparent">
+              PAVITHRA
             </span>
           </div>
           
+          {/* Desktop Menu */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex items-baseline space-x-1">
               {navItems.map((item) => (
-                <button
+                <a
                   key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-110 hover:bg-purple-500/10"
+                  href={item.href}
+                  className="relative px-4 py-2 text-gray-300 hover:text-[#e879f9] font-medium transition-all duration-300 group"
                 >
                   {item.name}
-                </button>
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#8b5cf6] to-[#e879f9] group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute inset-0 bg-[#8b5cf6]/10 opacity-0 group-hover:opacity-100 rounded-lg transition-opacity duration-300"></div>
+                </a>
               ))}
             </div>
           </div>
           
+          {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white hover:scale-110 transition-all duration-300"
+              className="text-[#8b5cf6] hover:text-[#e879f9] transition-colors duration-300"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -58,17 +67,19 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden animate-fade-in">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-slate-900/95">
+        <div className="md:hidden bg-[#1a0d2e]/95 backdrop-blur-md border-t border-[#8b5cf6]/20">
+          <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.name}
-                onClick={() => handleNavClick(item.href)}
-                className="text-gray-300 hover:text-purple-400 block px-3 py-2 rounded-md text-base font-medium w-full text-left hover:bg-purple-500/10 transition-all duration-300"
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-3 text-gray-300 hover:text-[#e879f9] hover:bg-[#8b5cf6]/10 rounded-lg transition-all duration-300"
               >
                 {item.name}
-              </button>
+              </a>
             ))}
           </div>
         </div>
