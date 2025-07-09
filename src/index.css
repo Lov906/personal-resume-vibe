@@ -38,6 +38,15 @@
     --sidebar-ring: 262 83% 58%;
     --radius: 0.5rem;
   }
+  
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
 }
 
 @layer utilities {
