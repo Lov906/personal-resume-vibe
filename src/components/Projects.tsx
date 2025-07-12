@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { ExternalLink, Github, Sparkles, Zap } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -12,8 +13,7 @@ const Projects = () => {
       technologies: ["AI", "Blockchain", "Python", "Machine Learning", "Smart Contracts"],
       category: "ai",
       github: "#",
-      demo: "#",
-      gradient: "from-[#8b5cf6] to-[#a855f7]"
+      demo: "#"
     },
     {
       title: "Weather Analysis Gaming Suite",
@@ -22,8 +22,7 @@ const Projects = () => {
       technologies: ["Python", "Game Development", "Data Visualization", "Physics Engine"],
       category: "game",
       github: "#",
-      demo: "#",
-      gradient: "from-[#a855f7] to-[#c084fc]"
+      demo: "#"
     },
     {
       title: "3D Spatial Data Processor",
@@ -32,8 +31,7 @@ const Projects = () => {
       technologies: ["Python", "3D Graphics", "Spatial Analysis", "Real-time Processing"],
       category: "data",
       github: "#",
-      demo: "#",
-      gradient: "from-[#c084fc] to-[#e879f9]"
+      demo: "#"
     }
   ];
 
@@ -49,15 +47,15 @@ const Projects = () => {
     : projects.filter(project => project.category === activeFilter);
 
   return (
-    <section id="projects" className="py-20 relative z-10 bg-gradient-to-b from-transparent to-[#1a0d2e]/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-20 bg-gray-900/30">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 slide-in-up">
-          <h2 className="text-5xl font-black mb-4 bg-gradient-to-r from-[#8b5cf6] to-[#e879f9] bg-clip-text text-transparent neon-text">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-[#8b5cf6] to-[#e879f9] mx-auto rounded-full mb-8"></div>
-          <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-500 mx-auto rounded-full mb-8"></div>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Showcasing innovative solutions that blend cutting-edge technology with creative problem-solving
           </p>
         </div>
@@ -68,10 +66,10 @@ const Projects = () => {
             <button
               key={filter.key}
               onClick={() => setActiveFilter(filter.key)}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform-gpu hover:scale-105 ${
+              className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
                 activeFilter === filter.key
-                  ? 'bg-gradient-to-r from-[#8b5cf6] to-[#a855f7] text-white neon-glow'
-                  : 'bg-[#1a0d2e]/50 text-[#8b5cf6] border border-[#8b5cf6]/30 hover:bg-[#8b5cf6]/10 hover:border-[#8b5cf6]/60'
+                  ? 'bg-gradient-to-r from-purple-600 to-purple-700 text-white'
+                  : 'bg-gray-800 text-purple-400 border border-purple-600/30 hover:bg-purple-600/20'
               }`}
             >
               {filter.label}
@@ -84,31 +82,24 @@ const Projects = () => {
           {filteredProjects.map((project, index) => (
             <div
               key={index}
-              className="group relative bg-gradient-to-br from-[#1a0d2e]/80 to-[#2d1b4e]/80 rounded-xl overflow-hidden border border-[#8b5cf6]/30 backdrop-blur-sm transform-gpu hover:scale-105 transition-all duration-500 card-3d neon-border hover:neon-glow"
-              style={{ animationDelay: `${index * 200}ms` }}
+              className="bg-gray-800/50 rounded-xl overflow-hidden border border-purple-600/30 hover:border-purple-500/50 transition-all duration-300"
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a0d2e]/80 via-transparent to-transparent"></div>
-                <div className="absolute top-4 right-4">
-                  <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${project.gradient} animate-pulse`}></div>
-                </div>
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#8b5cf6]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
               </div>
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#e879f9] transition-colors duration-300">
+                <h3 className="text-xl font-semibold text-white mb-3">
                   {project.title}
                 </h3>
-                <p className="text-gray-300 mb-4 leading-relaxed group-hover:text-white transition-colors duration-300">
+                <p className="text-gray-300 mb-4 leading-relaxed">
                   {project.description}
                 </p>
 
@@ -117,7 +108,7 @@ const Projects = () => {
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-[#8b5cf6]/20 to-[#c084fc]/20 text-[#c084fc] rounded-full border border-[#8b5cf6]/30 hover:scale-105 transition-transform duration-200 cursor-default"
+                      className="px-3 py-1 text-xs font-medium bg-purple-600/20 text-purple-300 rounded-full border border-purple-600/30"
                     >
                       {tech}
                     </span>
@@ -128,31 +119,23 @@ const Projects = () => {
                 <div className="flex space-x-4">
                   <a
                     href={project.github}
-                    className="flex items-center text-gray-300 hover:text-[#e879f9] transition-all duration-300 hover:scale-110 transform-gpu"
+                    className="flex items-center text-gray-300 hover:text-purple-400 transition-colors duration-300"
                   >
                     <Github className="w-5 h-5 mr-2" />
                     Code
                   </a>
                   <a
                     href={project.demo}
-                    className="flex items-center text-gray-300 hover:text-[#e879f9] transition-all duration-300 hover:scale-110 transform-gpu"
+                    className="flex items-center text-gray-300 hover:text-purple-400 transition-colors duration-300"
                   >
                     <ExternalLink className="w-5 h-5 mr-2" />
                     Demo
                   </a>
                 </div>
               </div>
-
-              {/* Floating Elements */}
-              <div className="absolute -top-2 -left-2 w-4 h-4 bg-[#8b5cf6] rounded-full opacity-0 group-hover:opacity-100 animate-float transition-opacity duration-300"></div>
-              <Zap className="absolute bottom-4 right-4 w-5 h-5 text-[#c084fc] opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
             </div>
           ))}
         </div>
-
-        {/* Floating Decorations */}
-        <Sparkles className="absolute top-20 right-20 w-6 h-6 text-[#8b5cf6] animate-pulse opacity-40" />
-        <div className="absolute bottom-10 left-1/4 w-5 h-5 bg-[#e879f9] rounded-full animate-float-slow opacity-30"></div>
       </div>
     </section>
   );

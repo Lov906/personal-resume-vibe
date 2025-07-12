@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Dank Neon Purple Design System */
 @layer base {
   :root {
     --background: 222.2 84% 4.9%;
@@ -25,17 +24,6 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 262 83% 58%;
-    --neon-purple: 262 83% 58%;
-    --electric-purple: 270 95% 75%;
-    --deep-purple: 258 52% 18%;
-    --sidebar-background: 222.2 84% 4.9%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 262 83% 58%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 270 95% 75%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-ring: 262 83% 58%;
     --radius: 0.5rem;
   }
   
@@ -49,151 +37,15 @@
   }
 }
 
-@layer utilities {
-  /* Neon Effects */
-  .neon-text {
-    text-shadow: 
-      0 0 5px hsl(262 83% 58% / 0.8),
-      0 0 10px hsl(262 83% 58% / 0.6),
-      0 0 15px hsl(262 83% 58% / 0.4),
-      0 0 20px hsl(262 83% 58% / 0.2);
-  }
-
-  .neon-glow {
-    box-shadow: 
-      0 0 10px hsl(262 83% 58% / 0.6),
-      0 0 20px hsl(262 83% 58% / 0.4),
-      0 0 30px hsl(262 83% 58% / 0.2);
-  }
-
-  .neon-border {
-    border: 1px solid hsl(262 83% 58% / 0.6);
-    box-shadow: 
-      inset 0 0 10px hsl(262 83% 58% / 0.2),
-      0 0 10px hsl(262 83% 58% / 0.4);
-  }
-
-  /* 3D Transform Effects */
-  .transform-3d {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-  }
-
-  .card-3d {
-    transform-style: preserve-3d;
-    transition: transform 0.6s;
-  }
-
-  .card-3d:hover {
-    transform: rotateY(10deg) rotateX(10deg);
-  }
-
-  /* Floating Animations */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-float-slow {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  .animate-float-medium {
-    animation: float 7s ease-in-out infinite;
-  }
-
-  /* Custom Animations */
-  .animate-gradient-x {
-    animation: gradient-x 3s ease infinite;
-    background-size: 200% 200%;
-  }
-
-  .animate-blink {
-    animation: blink 1s infinite;
-  }
-
-  .animate-tilt {
-    transition: transform 0.3s ease;
-  }
-
-  .animate-tilt:hover {
-    transform: perspective(1000px) rotateX(10deg) rotateY(10deg);
-  }
-
-  /* Pulse Glow */
-  .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite alternate;
-  }
-
-  /* Slide In Animations */
-  .slide-in-left {
-    animation: slide-in-left 0.8s ease-out;
-  }
-
-  .slide-in-right {
-    animation: slide-in-right 0.8s ease-out;
-  }
-
-  .slide-in-up {
-    animation: slide-in-up 0.8s ease-out;
-  }
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Keyframes */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes gradient-x {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-@keyframes pulse-glow {
-  from {
-    box-shadow: 0 0 20px hsl(262 83% 58% / 0.4);
-  }
-  to {
-    box-shadow: 0 0 30px hsl(262 83% 58% / 0.8);
-  }
-}
-
-@keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Selection */
+::selection {
+  background: rgba(139, 92, 246, 0.3);
+  color: white;
 }
 
 /* Scrollbar Styling */
@@ -202,25 +54,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(222.2 84% 4.9%);
+  background: #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, hsl(262 83% 58%), hsl(270 95% 75%));
+  background: linear-gradient(180deg, #8b5cf6, #ec4899);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, hsl(258 90% 66%), hsl(270 95% 75%));
-}
-
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Selection */
-::selection {
-  background: hsl(262 83% 58% / 0.3);
-  color: white;
+  background: linear-gradient(180deg, #a855f7, #f472b6);
 }
